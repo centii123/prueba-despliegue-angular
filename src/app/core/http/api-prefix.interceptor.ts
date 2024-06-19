@@ -11,7 +11,7 @@ export class ApiService {
   private apiUrl: any;
 
   constructor(private http: HttpClient) {
-    this.apiUrl = 'http://localhost:8080'
+    this.apiUrl = 'http://prueba-despliegue-springboot-production.up.railway.app'
 
   }
 

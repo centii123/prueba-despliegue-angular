@@ -1,0 +1,105 @@
+<nav class="navbar navbar-expand-lg background-principal">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#"><img src="./assets/image/logo-hotel.png" alt="" width="60"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+            aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav me-auto ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/home">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/habitaciones" >Habitaciones</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/info-hotel">Informacion del Hotel</a>
+                </li>
+                <li class="nav-item" *ngIf="seccionAdmin()">
+                  <a class="nav-link" href="/gestion-hotel">Admin Hotel</a>
+              </li>
+            </ul>
+            <div class="d-flex">
+                <ng-container *ngIf="loginData; else noLogin">
+                  <div class="d-flex justify-content-center align-items-center">
+                    <div class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ nombreUsuario.name }}
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><button class="btn dropdown-item" (click)="cerrarSession()">Cerrar Sesión</button></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <i class="bi bi-person-fill" style="font-size: 35px;"></i>
+                    </div>
+                </div>
+                </ng-container>
+                <ng-template #noLogin>
+                    <div class="dropdown">
+                        <a class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#registro">Registrarse</a> / <button type="button" class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#login">Iniciar Session</button>
+                    </div>
+                    
+                    
+                    
+                    
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="modal fade" id="login" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="loginLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form (ngSubmit)="login()">
+          <div class="modal-header">
+              <h1 class="modal-title fs-5" id="staticBackdropLabel">Login</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="username" [(ngModel)]="username" name="username" required aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Password</label>
+                  <input type="password" class="form-control" id="password" [(ngModel)]="password" name="password" required>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+            </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="registro" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="registroLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form (ngSubmit)="Registro()">
+          <div class="modal-header">
+              <h1 class="modal-title fs-5" id="staticBackdropLabel">Registro</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Password</label>
+                  <input type="password" class="form-control" id="exampleInputPassword1">
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Registrarte</button>
+            </div>
+      </form>
+    </div>
+  </div>
+</div>
